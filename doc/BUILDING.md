@@ -94,9 +94,21 @@ Keep in mind that your own build of Tuta Mail Desktop will not update automatica
 1. Build packages: `npm run build-packages`
 2. Run `node desktop --custom-desktop-release`.
 
-The client for your platform will be in `build/desktop/`. Note that you can add `--unpacked` to the build command to
+The client for your platform will be in `artifacts/desktop/`. Note that you can add `--unpacked` to the build command to
 skip the packaging of the installer. This will yield a directory containing the client that can be run without
 installation.
+
+### Debian package (Linux)
+
+To build a Debian installer (`.deb`) for the desktop client on Debian/Ubuntu:
+
+1. Ensure Node.js (see `package.json`), Rust 1.84.0 + `wasm32-unknown-unknown`, and Emscripten 3.1.59 are installed.
+2. Run `npm ci`.
+3. Build packages: `npm run build-packages`.
+4. Build the Debian package:
+   `TUTA_VERSION_OVERRIDE=<version> node desktop --custom-desktop-release --platform linux --architecture x64`
+
+The `.deb` will be written to `artifacts/desktop/`. An AppImage is also produced unless `--unpacked` is used.
 
 ### Extra Notes:
 

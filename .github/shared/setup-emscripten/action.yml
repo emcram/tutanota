@@ -24,8 +24,8 @@ runs:
       run: |
         git clone --branch ${{ inputs.emscripten-version }} https://github.com/emscripten-core/emsdk.git
         cd emsdk
-        ./emsdk install latest
-        ./emsdk activate latest
+        ./emsdk install ${{ inputs.emscripten-version }}
+        ./emsdk activate ${{ inputs.emscripten-version }}
         source ./emsdk_env.sh
     - name: add emscripten to path
       shell: bash
