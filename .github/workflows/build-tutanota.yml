@@ -34,7 +34,7 @@ jobs:
       - name: Checkout shared actions
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          repository: 0r4m3r/gh-actions
+          repository: emcram/gh-actions
           ref: cb94603482e9b8e476f9c93755f77674e16423e2
           path: .github/actions/gh-actions
           persist-credentials: false
