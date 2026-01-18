@@ -131,12 +131,23 @@ export default async function generateTemplate({ nameSuffix, version, updateUrl,
 			icon: path.join(path.dirname(iconPath), "icon/"),
 			synopsis: "Tuta Mail Desktop Client",
 			category: "Network",
-			target: [
-				{
-					target: unpacked ? "dir" : "AppImage",
-					arch: architecture,
-				},
-			],
+			target: unpacked
+				? [
+						{
+							target: "dir",
+							arch: architecture,
+						},
+					]
+				: [
+						{
+							target: "deb",
+							arch: architecture,
+						},
+						{
+							target: "AppImage",
+							arch: architecture,
+						},
+					],
 		},
 		electronFuses,
 	}
