@@ -66,7 +66,8 @@ jobs:
           echo "package_version=${PKG_VERSION}" >> "$GITHUB_OUTPUT"
           echo "tag_version=${TAG_VERSION}" >> "$GITHUB_OUTPUT"
           if [[ "${TAG_VERSION}" != "${PKG_VERSION}" ]]; then
-            echo "::warning::Tag version ${TAG_VERSION} does not match package.json version ${PKG_VERSION}."
+            echo "Tag version ${TAG_VERSION} does not match package.json version ${PKG_VERSION}." >&2
+            exit 1
           fi
 
   build-linux:
