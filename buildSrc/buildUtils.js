@@ -16,6 +16,11 @@ var measureStartTime
  * @returns {Promise<string>}
  */
 export async function getTutanotaAppVersion() {
+	const override = process.env.TUTA_VERSION_OVERRIDE?.trim()
+	if (override) {
+		console.warn("Using overridden Tuta version:", override)
+		return override
+	}
 	const packageJson = JSON.parse(await fs.readFile(path.join(__dirname, "..", "package.json"), "utf8"))
 	return packageJson.version.trim()
 }
