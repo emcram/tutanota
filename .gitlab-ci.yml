@@ -1,0 +1,33 @@
+workflow:
+  rules:
+    - if: '$CI_COMMIT_TAG'
+    - if: '$CI_COMMIT_REF_PROTECTED == "true"'
+    - when: never
+
+stages:
+  - verify
+  - test
+  - github-sync
+
+include:
+  - project: '${GL_CICD_SHARED_PROJ}'
+    ref: main
+    file: '/rustc/verify.yml'
+  - project: '${GL_CICD_SHARED_PROJ}'
+    ref: main
+    file: '/rustc/test.yml'
+  - project: '${GL_CICD_SHARED_PROJ}'
+    ref: main
+    file: '/github/validate.yml'
+  - project: '${GL_CICD_SHARED_PROJ}'
+    ref: main
+    file: '/github/push.yml'
+
+# Repo-specific overrides for this workspace
+variables:
+  RUSTUP_TOOLCHAIN: '1.84.0'
+  CARGO_TEST_FLAGS: ''
+  CARGO_FMT_FLAGS: '--all --check'
+  CARGO_CLIPPY_FLAGS: '--all-targets -- -D warnings'
+  EXTRA_DEPS: ''
+  # GH_FORCE_PUSH: 'true'
