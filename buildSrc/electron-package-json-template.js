@@ -38,7 +38,6 @@ export default async function generateTemplate({ nameSuffix, version, updateUrl,
 		icon: iconPath,
 		appId: appId,
 		productName: nameSuffix.length > 0 ? nameSuffix.slice(1) + " Tuta Mail" : "Tuta Mail",
-		homepage: "https://tuta.com",
 		// name of the appImage
 		artifactName: "${name}-${os}.${ext}",
 		asarUnpack: "desktop/*.node",
