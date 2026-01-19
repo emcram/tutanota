@@ -26,7 +26,8 @@ include:
 # Repo-specific overrides for this workspace
 variables:
   RUSTUP_TOOLCHAIN: '1.84.0'
-  CARGO_TEST_FLAGS: ''
+  # Targeted Rust tests for desktop-relevant crates.
+  CARGO_TEST_FLAGS: '--package tuta-sdk --package crypto-primitives --package tutao_node-mimimi'
   CARGO_FMT_FLAGS: '--all --check'
   CARGO_CLIPPY_FLAGS: '--all-targets -- -D warnings'
   EXTRA_DEPS: ''
