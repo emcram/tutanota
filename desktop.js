@@ -13,8 +13,8 @@ import { domainConfigs } from "./buildSrc/DomainConfigs.js"
 import { BlockList } from "node:net"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const tutaTestUrl = new URL("https://app.test.tuta.com")
-const tutaAppUrl = new URL("https://app.tuta.com")
+const tutaTestUrl = "https://app.test.tuta.com"
+const tutaAppUrl = "https://app.tuta.com"
 
 await program
 	.usage('[options] [test|prod|local|release|host <url>], "release" is default')

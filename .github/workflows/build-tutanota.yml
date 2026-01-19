@@ -98,7 +98,11 @@ jobs:
       - name: Build Debian package
         run: |
           npm run build-packages
-          node desktop --custom-desktop-release --platform linux --architecture x64
+          node desktop release --custom-desktop-release --platform linux --architecture x64
+
+      - name: Verify desktop staticUrl
+        run: |
+          node -e "const fs=require('fs'); const content=fs.readFileSync('build/index-desktop.js','utf8'); const ok=/\\\"staticUrl\\\"\\s*:\\s*\\\"https:\\/\\/app\\.tuta\\.com\\/?\\\"/.test(content); if(!ok){ throw new Error('index-desktop.js must target https://app.tuta.com for release builds'); }"
 
       - name: Verify artifacts
         run: |
